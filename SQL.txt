@@ -1,0 +1,137 @@
+create database agendamento_hospitalar;
+use agendamento_hospitalar;
+
+create table Usuario(
+id int auto_increment primary key,
+nome varchar(100),
+senha varchar(25)
+);
+
+select ag.data_hora,
+hos.nome_hospital HOSPITAL,
+pac.nome NOME_PACIENTE,
+med.nome_medico NOME_MEDICO, 
+con.nome_convenio CONVENIO,
+plan.plano_de_saude PLANO
+from agendamento ag
+join medico med on ag.id_medico = med.id
+join paciente pac on ag.id_paciente = pac.id
+join hospital hos on ag.id_hospital = hos.id
+join convenio con on ag.id_convenio = con.id
+join plano_saude plan on ag.id_plano_de_saude = plan.id;
+
+
+create table Paciente(
+id int auto_increment primary key,
+nome varchar(100) not null,
+data_nascimento date,
+cpf varchar (11) unique not null,
+id_convenio int,
+foreign key (id_convenio) references Convenio (id)
+);
+
+create table Hospital(
+id int auto_increment primary key,
+nome_hospital varchar(100) not null,
+endereco varchar (100),
+telefone varchar (15)
+);
+
+create table Convenio(
+id int auto_increment primary key,
+nome_convenio varchar(100) not null
+);
+
+create table Plano_saude(
+id int auto_increment primary key,
+plano_de_saude varchar (45)
+);
+
+create table Medico(
+id int auto_increment primary key,
+nome_medico varchar (100),
+especialidade varchar (45)
+);
+
+create table Agendamento(
+id int auto_increment primary key,
+data_hora varchar(45),
+id_paciente int,
+id_medico int,
+id_hospital int,
+id_convenio int,
+id_plano_de_saude int,
+especialidade varchar (45),
+foreign key (id_paciente) references Paciente (id),
+foreign key (id_hospital) references Hospital (id),
+foreign key (id_medico) references Medico (id),
+foreign key (id_convenio) references Convenio (id),
+foreign key (id_plano_de_saude) references Plano_saude(id)
+);
+
+insert into Usuario (nome, senha) values ("admin", "1234");
+
+insert into Convenio (nome_convenio, plano_saude) values ("SUS", "Atendimento Público");
+insert into Convenio (nome_convenio, plano_saude) values ("Bradesco Saúde", "Premium");
+insert into Convenio (nome_convenio, plano_saude) values ("Unimed", "Fama");
+select * from Convenio;
+
+insert into Paciente (nome, data_nascimento, cpf, id_convenio) values ("Ícaro", "2005-02-10", "43692339855", 1);
+insert into Paciente (nome, data_nascimento, cpf, id_convenio) values ("César", "2004-08-12", "4369555523", 2);
+insert into Paciente (nome, data_nascimento, cpf, id_convenio) values ("Andrey", "2005-05-15", "4369558883", 3);
+select * from Paciente;
+
+insert into Medico (nome_medico, especialidade) values ("Fábio", "Odontologia");
+insert into Medico (nome_medico, especialidade) values ("Fernando", "Pediatra");
+select * from Medico;
+
+insert into Hospital (nome_hospital, endereco, telefone) values ("Hospital de Diadema", "Rua A, 202", "232323");
+insert into Hospital (nome_hospital, endereco, telefone) values ("Hospital Municipal", "Rua B, 404", "11832432");
+insert into Hospital (nome_hospital, endereco, telefone) values ("Hospital Santa Casa", "Rua C, 505", "1189348");
+select * from Hospital;
+select * from Agendamento;
+
+
+
+INSERT INTO agendamento (data_hora, id_paciente, id_medico, id_hospital, id_convenio, id_plano_de_saude, especialidade) VALUES
+	("2022-08-15",1,1,1,1,1);
+
+UPDATE tb_pessoa SET nome='José da Silva' WHERE codigo = 1;
+
+drop table Agendamento;
+select * from Convenio;
+insert into Plano_saude (plano_de_saude) values ("Atendimento Público");
+select * from Plano_saude;
+drop table Plano_saude;
+
+use agendamento_hospitalar;
+
+select data_hora,
+nome_hospital HOSPITAL,
+nome NOME_PACIENTE,
+nome_medico NOME_MEDICO, 
+especialidade ESPECIALIDADE,
+nome_convenio CONVENIO,
+plano_saude PLANO
+
+from agendamento ag
+join medico med on ag.id_medico = med.id
+join paciente pac on ag.id_paciente = pac.id
+join hospital hos on ag.id_hospital = hos.id
+join convenio con on ag.id_convenio = con.id
+
+where pac.id = 1;
+
+select data_hora,
+hos.nome_hospital HOSPITAL,
+pac.nome NOME_PACIENTE,
+med.nome_medico NOME_MEDICO,
+med.especialidade ESPECIALIDADE,
+con.nome_convenio CONVENIO,
+plan.plano_de_saude PLANO
+from agendamento ag
+join medico med on ag.id_medico = med.id
+join paciente pac on ag.id_paciente = pac.id
+join hospital hos on ag.id_hospital = hos.id
+join convenio con on ag.id_convenio = con.id
+join plano_saude plan on ag.id_plano_de_saude = plan.id;
