@@ -1,4 +1,4 @@
-# ProjetoA3
+# ProjetoA3 - Agendamento Hospitalar USJT
 Trabalho feito pelos alunos de TI, sobre os Objetivos de Desenvolvimento Sustentável.
 
 Breve descrição sobre a ideia de software que será programado no projeto A3:
