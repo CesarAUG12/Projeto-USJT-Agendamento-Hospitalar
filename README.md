@@ -5,9 +5,9 @@ Estamos apresentando um código em JAVA com o intuito de auxiliar no cadastro e 
 (ODS 3 - BOA SAÚDE E BEM ESTAR).
 
 •	Andrey Jones
+•	Cesar Augusto
 •	Victor Rangel 
 •	Fernando Macedo de Melo
-•	Cesar Augusto
 •	Ícaro Mendes Carbonez
 •	Fabio Patrinhani Henrique
 •	Fabio Lanzoni
